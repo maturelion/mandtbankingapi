@@ -2,6 +2,7 @@ databases:
   - name: mandtbank
     databaseName: mandtbank
     user: mandtbank
+    plan: free
 
 services:
   - type: web
@@ -9,6 +10,7 @@ services:
     env: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn -b 0.0.0.0 backend.wsgi:application"
+    plan: free
     envVars:
       - key: DATABASE_URL
         fromDatabase:
