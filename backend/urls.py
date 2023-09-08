@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from activity.views import ActivityViewSet
+from checkpoints.views import CheckpointViewSet
 
 from users.views import UserViewSet
 from wallets.views import WalletViewSet
@@ -13,6 +14,7 @@ from pockets.views import PocketViewSet
 router = DefaultRouter()
 router.register("users", UserViewSet, "user")
 router.register("activities", ActivityViewSet, "activity")
+router.register("checkpoints", CheckpointViewSet, "checkpoint")
 router.register("wallets", WalletViewSet, "wallet")
 router.register("pockets", PocketViewSet, "pocket")
 
