@@ -1,24 +1,32 @@
 from django.contrib import admin
 from .models import User
 from django.contrib.auth.admin import UserAdmin
-# from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin
 
 
-class UserAdminConfig(UserAdmin):
+class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
     model = User
+    date_hierarchy = "date_joined"
     search_fields = (
         "email",
         "username",
+        "referral"
     )
     list_filter = (
         "is_active",
         "is_staff",
+        # "referral",
+        "has_miner",
+        "can_withdraw_bonus"
     )
-    ordering = ("-date_joined",)
+    ordering = ("username",)
     list_display = (
         "username",
-        "slug",
+        # "slug",
         "email",
+        "has_miner",
+        "referral_code",
+        "referral",
         "date_joined",
         "last_login",
     )
@@ -33,11 +41,24 @@ class UserAdminConfig(UserAdmin):
                     "username",
                     "first_name",
                     "last_name",
-                    "account_number",
                     "password",
+                    "has_miner",
+                    "can_withdraw_bonus",
                 )
             },
         ),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                )
+            },
+        ),
+        ("Activity", {"fields": ("last_login",)}),
     )
 
     add_fieldsets = (
@@ -52,7 +73,6 @@ class UserAdminConfig(UserAdmin):
                     "password2",
                     "first_name",
                     "last_name",
-                    "account_number",
                     "is_active",
                     "is_staff",
                 ),
