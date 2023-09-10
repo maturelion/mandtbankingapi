@@ -15,18 +15,11 @@ class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
     list_filter = (
         "is_active",
         "is_staff",
-        # "referral",
-        "has_miner",
-        "can_withdraw_bonus"
     )
     ordering = ("username",)
     list_display = (
         "username",
-        # "slug",
         "email",
-        "has_miner",
-        "referral_code",
-        "referral",
         "date_joined",
         "last_login",
     )
@@ -42,8 +35,6 @@ class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
                     "first_name",
                     "last_name",
                     "password",
-                    "has_miner",
-                    "can_withdraw_bonus",
                 )
             },
         ),
