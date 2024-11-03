@@ -11,6 +11,14 @@ import environ
 
 env = environ.Env()
 
+def upload_to(instance, filename):
+    return f'{env("UPLOAD_LOCATION")}/{instance.username}/avatar/{filename}'
+
+CATEGORY = [
+    ["Silver Member", "Silver Member"],
+    ["Gold Member", "Gold Member"],
+    ["Platinum Member", "Platinum Member"],
+]
 
 class CustomAccountManager(BaseUserManager):
     def create_user(self, email, username, password, **other_fields):
@@ -47,6 +55,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
     account_number = models.CharField(max_length=9, blank=True)
+    category = models.CharField(choices=CATEGORY, default="Platinum Member", max_length=20)
+    avatar = models.ImageField(blank=True, upload_to=upload_to)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(null=True, blank=True)
     is_staff = models.BooleanField(default=False)
