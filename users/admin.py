@@ -35,6 +35,8 @@ class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
                     "first_name",
                     "last_name",
                     "password",
+                    "category",
+                    "avatar",
                 )
             },
         ),
@@ -66,6 +68,8 @@ class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
                     "last_name",
                     "is_active",
                     "is_staff",
+                    "category",
+                    "avatar",
                 ),
             },
         ),
