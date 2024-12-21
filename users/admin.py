@@ -36,6 +36,7 @@ class UserAdminConfig(ImportExportModelAdmin, UserAdmin):
                     "last_name",
                     "password",
                     "category",
+                    "account_number",
                     "avatar",
                 )
             },
