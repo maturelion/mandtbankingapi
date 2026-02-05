@@ -23,7 +23,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8002:8000"
     environment:
       - DATABASE_URL=postgres://banking_user:banking_pass@db:5432/banking_db
     env_file:
