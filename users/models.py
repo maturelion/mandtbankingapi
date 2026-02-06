@@ -12,7 +12,8 @@ import environ
 env = environ.Env()
 
 def upload_to(instance, filename):
-    return f'{env("UPLOAD_LOCATION")}/{instance.username}/avatar/{filename}'
+    location = env("UPLOAD_LOCATION", default="avatars")
+    return f'{location}/{instance.username}/avatar/{filename}'
 
 CATEGORY = [
     ["Silver Member", "Silver Member"],
